@@ -38,6 +38,12 @@
     },
 
     props: {
+      buttonStyle: {
+        type: [Object, String],
+        default() {
+          return {};
+        }
+      },
       value: {
         type: Number,
         default: 0
@@ -102,7 +108,7 @@
       },
 
       wrapperStyle() {
-        return this.vertical ? { bottom: this.currentPosition } : { left: this.currentPosition };
+        return Object.assign(this.vertical ? { bottom: this.currentPosition } : { left: this.currentPosition }, this.buttonStyle);
       }
     },
 

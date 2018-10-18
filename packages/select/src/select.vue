@@ -113,7 +113,7 @@
           wrap-class="el-select-dropdown__wrap"
           view-class="el-select-dropdown__list"
           ref="scrollbar"
-          :class="{ 'is-empty': !allowCreate && query && filteredOptionsCount === 0 }"
+          :class="{ 'is-empty': !allowCreate && query && filteredOptionsCount === 0, 'cv-recommend-select-options': isRecommend }"
           v-show="options.length > 0 && !loading">
           <el-option
             :value="query"
@@ -298,6 +298,10 @@
       popperAppendToBody: {
         type: Boolean,
         default: true
+      },
+      isRecommend: {
+        type: Boolean,
+        default: false
       }
     },
 

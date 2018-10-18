@@ -22,7 +22,7 @@
       :size="inputSize">
     </el-input-number>
     <div class="el-slider__runway"
-      :class="{ 'show-input': showInput, 'disabled': sliderDisabled }"
+      :class="{ 'show-input': showInput, 'disabled': sliderDisabled, buttonStyle }"
       :style="runwayStyle"
       @click="onSliderClick"
       ref="slider">
@@ -30,6 +30,11 @@
         class="el-slider__bar"
         :style="barStyle">
       </div>
+      <div
+              v-if="showRemain"
+              class="el-slider__remain-bar"
+              :style="remainBarStyle"
+      ></div>
       <slider-button
         :vertical="vertical"
         v-model="firstValue"
@@ -70,6 +75,10 @@
     },
 
     props: {
+      showRemain: {
+        type: Boolean,
+        default: false
+      },
       min: {
         type: Number,
         default: 0
@@ -143,7 +152,8 @@
         secondValue: null,
         oldValue: null,
         dragging: false,
-        sliderSize: 1
+        sliderSize: 1,
+        buttonStyle: ''
       };
     },
 
@@ -341,7 +351,12 @@
             left: this.barStart
           };
       },
-
+      remainBarStyle() {
+        return {
+          width: `${100 - parseInt(this.barSize, 10)}%`,
+          left: this.barSize
+        };
+      },
       sliderDisabled() {
         return this.disabled || (this.elForm || {}).disabled;
       }
