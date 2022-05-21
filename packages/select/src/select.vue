@@ -112,8 +112,9 @@
           tag="ul"
           wrap-class="el-select-dropdown__wrap"
           view-class="el-select-dropdown__list"
+          class="cv-recommend-select-options"
           ref="scrollbar"
-          :class="{ 'is-empty': !allowCreate && query && filteredOptionsCount === 0, 'cv-recommend-select-options': isRecommend }"
+          :class="{ 'is-empty': !allowCreate && query && filteredOptionsCount === 0, 'cv-recommend-select-options': name === 'cv-recommend-select' || isRecommend }"
           v-show="options.length > 0 && !loading">
           <el-option
             :value="query"
